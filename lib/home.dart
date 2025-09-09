@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+
 import 'all_screens.dart';
-import 'core/app_core.dart';
+import 'core/all_core.dart';
+//import 'core/app_core.dart';
 
 
 // ===================================================================

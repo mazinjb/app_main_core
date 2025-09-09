@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'core/app_core.dart';
+import 'core/all_core.dart';
+
 
 class DocumentationScreen extends StatelessWidget {
   const DocumentationScreen({super.key});
