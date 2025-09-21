@@ -6,9 +6,6 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../all_core.dart';
 
-
-
-
 // ===================================================================
 // القسم 8: نظام الثيمات المتكامل
 // ===================================================================
@@ -20,6 +17,7 @@ class AppColorPalette {
   final Color surface;
   final Color onBackground;
   final Color onPrimary;
+  final List<Color> gradientColors; // ✅ الخاصية الجديدة لدعم التدرج اللوني
 
   const AppColorPalette({
     required this.primary,
@@ -28,6 +26,7 @@ class AppColorPalette {
     required this.surface,
     required this.onBackground,
     required this.onPrimary,
+    required this.gradientColors, // ✅
   });
 
   AppColorPalette copyWith({
@@ -37,6 +36,7 @@ class AppColorPalette {
     Color? surface,
     Color? onBackground,
     Color? onPrimary,
+    List<Color>? gradientColors,
   }) {
     return AppColorPalette(
       primary: primary ?? this.primary,
@@ -45,6 +45,7 @@ class AppColorPalette {
       surface: surface ?? this.surface,
       onBackground: onBackground ?? this.onBackground,
       onPrimary: onPrimary ?? this.onPrimary,
+      gradientColors: gradientColors ?? this.gradientColors,
     );
   }
 }
@@ -91,14 +92,16 @@ class AppThemes {
           background: Color(0xFFF8F9FA),
           surface: Colors.white,
           onBackground: Color(0xFF333333),
-          onPrimary: Colors.white),
+          onPrimary: Colors.white,
+          gradientColors: [Color(0xFF4A90E2), Color(0xFF0A2540)]),
       darkPalette: const AppColorPalette(
           primary: Color(0xFF4A90E2),
           secondary: Color(0xFF00D4FF),
           background: Color(0xFF1A1A2E),
           surface: Color(0xFF16213E),
           onBackground: Color(0xFFE0E0E0),
-          onPrimary: Colors.white),
+          onPrimary: Colors.white,
+          gradientColors: [Color(0xFF4A90E2), Color(0xFF00D4FF)]),
       languageFonts: {'ar': 'Cairo', 'en': 'Poppins', 'fr': 'Montserrat'},
     );
     return base.copyWith(
@@ -121,14 +124,16 @@ class AppThemes {
             background: Color(0xFFF3E5F5),
             surface: Colors.white,
             onBackground: Color(0xFF212121),
-            onPrimary: Colors.white),
+            onPrimary: Colors.white,
+            gradientColors: [Color(0xFFD81B60), Color(0xFF6A1B9A)]),
         darkPalette: const AppColorPalette(
             primary: Color(0xFFCE93D8),
             secondary: Color(0xFFF06292),
             background: Color(0xFF212121),
             surface: Color(0xFF373737),
             onBackground: Color(0xFFF5F5F5),
-            onPrimary: Colors.black),
+            onPrimary: Colors.black,
+            gradientColors: [Color(0xFFF06292), Color(0xFFCE93D8)]),
         languageFonts: {'ar': 'Tajawal', 'en': 'Roboto', 'fr': 'Montserrat'},
         defaultFont: 'Roboto');
     return base.copyWith(
@@ -292,9 +297,10 @@ class AppTheme extends GetxController {
         labelStyle: TextStyle(fontFamily: fontFamily, color: labelColor));
   }
 
-  static CardTheme _cardTheme(Color cardColor) => CardTheme(
-      elevation: 2,
-      color: cardColor,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-      margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 0));
+  static CardThemeData _cardTheme(Color cardColor) => CardThemeData(
+    elevation: 2,
+    color: cardColor,
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+    margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 0),
+  );
 }
